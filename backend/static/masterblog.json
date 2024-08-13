@@ -1,0 +1,259 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Masterblog API",
+      "version": "1.0.0"
+    },
+    "servers": [{ "url": "http://localhost:5001" }],
+    "tags": [{ "name": "Post", "description": "Post API - CRUD" }],
+    "paths": {
+      "/api/posts": {
+        "get": {
+          "summary": "Returns all posts",
+          "produces": ["application/json"],
+          "tags": ["Post"],
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            }
+          }
+        },
+        "post": {
+          "summary": "Add a new post",
+          "produces": ["application/json"],
+          "tags": ["Post"],
+          "parameters": [
+            {
+              "name": "title",
+              "in": "body",
+              "description": "Title of the post",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "content",
+              "in": "body",
+              "description": "Content of the post",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Post created successfully"
+            }
+          }
+        }
+      },
+      "/api/posts/{id}": {
+        "get": {
+          "summary": "Get a specific post by ID",
+          "produces": ["application/json"],
+          "tags": ["Post"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the post to fetch",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            },
+            "404": {
+              "description": "Post not found"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update an existing post",
+          "produces": ["application/json"],
+          "tags": ["Post"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the post to update",
+              "required": true,
+              "type": "integer"
+            },
+            {
+              "name": "title",
+              "in": "body",
+              "description": "Updated title of the post",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "content",
+              "in": "body",
+              "description": "Updated content of the post",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post updated successfully"
+            },
+            "404": {
+              "description": "Post not found"
+            },
+            "400": {
+              "description": "No data provided to update"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete a specific post by ID",
+          "produces": ["application/json"],
+          "tags": ["Post"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the post to delete",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post deleted successfully"
+            },
+            "404": {
+              "description": "Post not found"
+            }
+          }
+        }
+      },
+      "/api/posts/{id}/comments": {
+        "post": {
+          "summary": "Add a comment to a post",
+          "produces": ["application/json"],
+          "tags": ["Post"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the post to add a comment to",
+              "required": true,
+              "type": "integer"
+            },
+            {
+              "name": "comment",
+              "in": "body",
+              "description": "Comment to add",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Comment added successfully"
+            },
+            "404": {
+              "description": "Post not found"
+            },
+            "400": {
+              "description": "Comment is required"
+            }
+          }
+        }
+      },
+      "/api/posts/search": {
+        "get": {
+          "summary": "Search specific posts",
+          "produces": ["application/json"],
+          "tags": ["Post"],
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            }
+          }
+        }
+      },
+      "/api/register": {
+        "post": {
+          "summary": "Register a new user",
+          "produces": ["application/json"],
+          "tags": ["User"],
+          "parameters": [
+            {
+              "name": "username",
+              "in": "body",
+              "description": "Username for registration",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "password",
+              "in": "body",
+              "description": "Password for registration",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "User registered successfully"
+            },
+            "400": {
+              "description": "User already exists"
+            }
+          }
+        }
+      },
+      "/api/login": {
+        "post": {
+          "summary": "Login a user",
+          "produces": ["application/json"],
+          "tags": ["User"],
+          "parameters": [
+            {
+              "name": "username",
+              "in": "body",
+              "description": "Username for login",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "password",
+              "in": "body",
+              "description": "Password for login",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Login successful"
+            },
+            "401": {
+              "description": "Invalid credentials"
+            }
+          }
+        }
+      }
+    }
+  }
+  

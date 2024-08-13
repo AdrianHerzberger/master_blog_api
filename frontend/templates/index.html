@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Blog Posts</h1>
+        
+        <!-- API URL input -->
+        <div class="input-field">
+            <input type="text" id="api-base-url" placeholder="Enter API Base URL" value="http://127.0.0.1:5002/api">
+            <button onclick="loadPosts()">Load Posts</button>
+        </div>
+
+        <!-- Add new post -->
+        <div class="input-field">
+            <input type="text" id="post-title" placeholder="Enter Post Title">
+            <input type="text" id="post-author" placeholder="Enter Author Name">
+            <input type="text" id="post-date" placeholder="Enter Post Date (YYYY-MM-DD)">
+            <input type="text" id="post-content" placeholder="Enter Post Content">
+            <button onclick="addPost()">Add Post</button>
+        </div>
+
+        <!-- Search and Sort -->
+        <div class="input-field">
+            <input type="text" id="search-query" placeholder="Search...">
+            <select id="sort-field">
+                <option value="">Sort by</option>
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+                <option value="date">Date</option>
+            </select>
+            <select id="sort-direction">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+            <button onclick="searchAndSortPosts()">Search and Sort</button>
+        </div>
+
+        <!-- Display posts -->
+        <div id="post-container">
+            <!-- Blog posts will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <script src="../static/main.js"></script>
+</body>
+</html>
